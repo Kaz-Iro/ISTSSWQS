@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONFIDENTIAL: The Whiteboard Loophole</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --kk-black: #0a0a0a;
+            --kk-dark: #111111;
+            --kk-yellow: #ffde00;
+            --kk-yellow-dark: #cca800;
+            --kk-red: #ff0033;
+            --kk-red-dark: #cc0029;
+            --text-light: #f1f1f1;
+            --text-muted: #aaaaaa;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-light); 
+            background-color: var(--kk-black); 
+            background-image: radial-gradient(circle at top center, #1a1a1a 0%, var(--kk-black) 100%);
+            margin: 0; padding: 0; 
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* The Aggressive Warning Bar */
+        .top-bar {
+            background: var(--kk-red);
+            color: #fff;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.4);
+            position: relative;
+            z-index: 10;
+        }
+
+        .wrapper {
+            max-width: 900px; /* Narrower for extreme focus */
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Massive Typography */
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            text-align: center;
+            margin: 0 0 25px 0;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 2px 2px 0px #000;
+        }
+        
+        /* The Signature Highlighter Effect */
+        h1 span.highlight {
+            background-color: var(--kk-yellow);
+            color: var(--kk-black);
+            padding: 0 10px;
+            display: inline-block;
+            transform: skew(-3deg);
+            text-shadow: none;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        /* The "Red Border" Video Container */
+        .video-box {
+            background: var(--kk-dark);
+            border: 4px solid var(--kk-red);
+            padding: 10px;
+            position: relative;
+            box-shadow: 0 0 40px rgba(255, 0, 51, 0.15);
+            margin-bottom: 40px;
+        }
+        .video-box::before {
+            content: "PLAY VIDEO";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--kk-red);
+            color: #fff;
+            padding: 5px 15px;
+            font-weight: 900;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+        
+        .gif-placeholder {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            color: #555;
+            font-weight: 900;
+            background: #000;
+            border: 1px dashed #333;
+        }
+
+        /* Aggressive Copy Styling */
+        .copy-box {
+            background: #151515;
+            border: 1px solid #333;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .feature-list li {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            color: var(--text-light);
+            line-height: 1.4;
+            font-weight: 700;
+        }
+        .feature-list strong { color: var(--kk-yellow); }
+        .feature-list svg {
+            color: var(--kk-red);
+            flex-shrink: 0;
+            width: 30px; height: 30px;
+        }
+
+        /* The Sabri Suby Button */
+        @keyframes shake {
+            0%, 100% {transform: translateX(0);}
+            10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+            20%, 40%, 60%, 80% {transform: translateX(5px);}
+        }
+        .btn {
+            width: 100%;
+            padding: 25px;
+            font-size: 1.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--kk-black);
+            background: var(--kk-yellow);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 0 var(--kk-yellow-dark), 0 15px 30px rgba(255, 222, 0, 0.3);
+            transition: all 0.1s ease;
+            position: relative;
+            letter-spacing: 1px;
+        }
+        .btn:hover { 
+            background: #fff033; 
+            animation: shake 1s infinite;
+        }
+        .btn:active {
+            transform: translateY(10px);
+            box-shadow: 0 0px 0 var(--kk-yellow-dark);
+            animation: none;
+        }
+        .btn-subtext {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Extreme Contrast Modal */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.2s;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        
+        .modal-box {
+            background: #111;
+            width: 100%; max-width: 550px;
+            padding: 50px 40px;
+            position: relative;
+            border: 5px solid var(--kk-yellow);
+            box-shadow: 0 0 50px rgba(255, 222, 0, 0.2);
+        }
+
+        .close-icon {
+            position: absolute; top: 10px; right: 20px;
+            cursor: pointer; font-size: 35px; font-weight: 900; color: #555;
+        }
+        .close-icon:hover { color: var(--kk-red); }
+        
+        .modal-box h2 { 
+            font-size: 2.2rem; font-weight: 900; margin: 0 0 15px 0; 
+            text-align: center; text-transform: uppercase; color: #fff;
+        }
+        
+        .bonus-alert {
+            background: rgba(255, 0, 51, 0.1);
+            border: 2px dashed var(--kk-red);
+            color: var(--kk-yellow);
+            padding: 15px;
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .input-group input {
+            width: 100%; padding: 25px;
+            border: 3px solid #333;
+            background: #000;
+            color: var(--kk-yellow);
+            font-size: 1.4rem; font-weight: 900;
+            margin-bottom: 20px; box-sizing: border-box;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .input-group input:focus { outline: none; border-color: var(--kk-yellow); }
+        .input-group input::placeholder { color: #555; }
+
+        /* Modal Button turns Red */
+        .modal-btn {
+            background: var(--kk-red);
+            color: #fff;
+            box-shadow: 0 8px 0 var(--kk-red-dark);
+        }
+        .modal-btn:hover {
+            background: #ff1a4b;
+        }
+        .modal-btn:active {
+            box-shadow: 0 0px 0 var(--kk-red-dark);
+        }
+
+        .footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 50px; padding-bottom: 30px;}
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.4rem; }
+            .wrapper { padding: 20px 15px; }
+            .gif-placeholder { height: 250px; }
+            .btn { font-size: 1.3rem; padding: 20px; }
+            .feature-list li { font-size: 1.1rem; }
+            .modal-box { padding: 40px 20px; border-width: 3px; }
+        }
+    </style>
+    
+    <script>
+        window.clickmagick_cmc = {
+        uid: 'YOUR_UID',
+        hid: 'YOUR_HID',
+        cmc_project: 'InstaDoodle Promo',
+        log_action: '.cta',
+        vid_info: 'on',
+        }
+    </script>
+    <script src='//cdn.clkmc.com/cmc.js'></script>
+</head>
+<body>
+
+    <div class="top-bar">[WARNING] THIS PRESENTATION WILL BE TAKEN DOWN SOON...</div>
+
+    <div class="wrapper">
+        <h1>Discover The Exact <span class="highlight">"Whiteboard" Loophole</span> That Forces Customers To Watch Your Ads...</h1>
+        
+        <p class="subtitle">...Without Expensive Video Editors, Complicated Software, Or Doing Awkward TikTok Dances On Camera.</p>
+        
+        <div class="video-box">
+            <div class="gif-placeholder">
+                <p>[INSERT YOUR RAW 15-SEC GIF DEMO HERE]</p>
+            </div>
+        </div>
+
+        <div class="copy-box">
+            <ul class="feature-list">
+                <li>
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    <span><strong>THE 60-SECOND ENGINE:</strong> Watch how simple product images instantly transform into highly-profitable animated sequences.</span>
+                </li>
+                <li>
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    <span><strong>ZERO TECH SKILLS REQUIRED:</strong> If you know how to drag and drop a file, you have the technical ability to deploy this today.</span>
+                </li>
+                <li>
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    <span><strong>THE "ATTENTION HACK":</strong> Uncover the psychological trigger that makes human brains watch hand-drawn animation 300% longer than standard ads.</span>
+                </li>
+            </ul>
+        </div>
+
+        <button class="btn cta" onclick="openModal()">YES! SHOW ME THE METHOD NOW &raquo;</button>
+        <div class="btn-subtext">&#128274; 100% Free & Secure Educational Access</div>
+        
+        <div class="footer">
+            This site is not a part of the Facebook website or Facebook Inc. Additionally, This site is NOT endorsed by Facebook in any way.<br>
+            Results vary. We make no guarantees regarding ad performance, CTR, or financial success. By entering your email, you agree to receive follow-up communications.
+        </div>
+    </div>
+
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-icon" onclick="closeModal()">&times;</span>
+            
+            <h2>WHERE SHOULD WE SEND YOUR ACCESS?</h2>
+            
+            <div class="bonus-alert">
+                &#9888; ACTION BONUS: INCLUDES THE PRIVATE "PATTERN INTERRUPT" B-ROLL VAULT!
+            </div>
+
+            <form onsubmit="event.preventDefault(); window.location.href='https://instadoodle.com/cb-special?hop=unfavrino&hopId=3bab95d6-c2b7-4d6e-81cc-87dd7c2b2797';">
+                <div class="input-group">
+                    <input type="email" id="emailInput" placeholder="ENTER YOUR BEST EMAIL..." required>
+                </div>
+                <button type="submit" class="btn modal-btn cta">
+                    SEND MY BONUSES & PLAY VIDEO &raquo;
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modalOverlay');
+        const emailInput = document.getElementById('emailInput');
+
+        function openModal() {
+            modal.style.display = 'flex';
+            setTimeout(() => { 
+                modal.classList.add('active'); 
+                emailInput.focus(); 
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            setTimeout(() => { modal.style.display = 'none'; }, 200);
+        }
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) { closeModal(); }
+        });
+    </script>
+</body>
+</html>
