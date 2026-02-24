@@ -8,38 +8,37 @@
     
     <style>
         :root {
-            --kk-black: #0a0a0a;
-            --kk-dark: #111111;
-            --kk-yellow: #ffde00;
-            --kk-yellow-dark: #cca800;
-            --kk-red: #ff0033;
-            --kk-red-dark: #cc0029;
-            --text-light: #f1f1f1;
-            --text-muted: #aaaaaa;
+            /* INSTADOODLE SAAS COLOR THEME */
+            --id-bg: #ffffff;
+            --id-text: #1e293b;
+            --id-muted: #64748b;
+            --id-blue: #2563eb;
+            --id-blue-dark: #1d4ed8;
+            --id-orange: #f97316;
+            --id-orange-dark: #c2410c;
+            --id-red: #ef4444;
+            --id-surface: #f8fafc;
+            --id-border: #e2e8f0;
         }
 
         body { 
             font-family: 'Montserrat', sans-serif; 
-            color: var(--text-light); 
-            background-color: var(--kk-black); 
-            background-image: radial-gradient(circle at top center, #1a1a1a 0%, var(--kk-black) 100%);
+            color: var(--id-text); 
+            background-color: var(--id-bg); 
             margin: 0; padding: 0; 
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
         }
 
         .top-bar {
-            background: var(--kk-red);
+            background: var(--id-red);
             color: #fff;
             text-align: center;
-            padding: 15px 10px;
-            font-size: 1rem;
-            font-weight: 900;
-            letter-spacing: 2px;
+            padding: 12px 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            box-shadow: 0 0 20px rgba(255, 0, 51, 0.4);
-            position: relative;
-            z-index: 10;
         }
 
         .wrapper {
@@ -49,55 +48,52 @@
         }
 
         h1 {
-            font-size: 3.8rem;
+            font-size: 3.2rem;
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.2;
             text-align: center;
-            margin: 0 0 25px 0;
-            text-transform: uppercase;
-            color: #ffffff;
-            text-shadow: 2px 2px 0px #000;
+            margin: 0 0 20px 0;
+            text-transform: capitalize;
+            color: var(--id-text);
         }
         
         h1 span.highlight {
-            background-color: var(--kk-yellow);
-            color: var(--kk-black);
-            padding: 0 10px;
-            display: inline-block;
-            transform: skew(-3deg);
-            text-shadow: none;
+            color: var(--id-blue);
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            color: var(--text-muted);
+            font-size: 1.3rem;
+            color: var(--id-muted);
             text-align: center;
             max-width: 800px;
             margin: 0 auto 40px auto;
-            line-height: 1.4;
-            font-weight: 700;
+            line-height: 1.5;
+            font-weight: 600;
         }
 
         .video-box {
-            background: var(--kk-dark);
-            border: 4px solid var(--kk-red);
+            background: #fff;
+            border: 2px solid var(--id-border);
+            border-radius: 12px;
             padding: 10px;
             position: relative;
-            box-shadow: 0 0 40px rgba(255, 0, 51, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
             margin-bottom: 40px;
         }
+        
         .video-box::before {
-            content: "PLAY VIDEO";
+            content: "SOFTWARE DEMO";
             position: absolute;
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--kk-red);
+            background: var(--id-blue);
             color: #fff;
-            padding: 5px 15px;
-            font-weight: 900;
+            padding: 6px 16px;
+            font-weight: 800;
             font-size: 0.8rem;
-            letter-spacing: 2px;
+            border-radius: 20px;
+            letter-spacing: 1px;
         }
         
         .gif-placeholder {
@@ -108,15 +104,17 @@
             justify-content: center;
             text-align: center;
             padding: 20px;
-            color: #555;
-            font-weight: 900;
-            background: #000;
-            border: 1px dashed #333;
+            color: var(--id-muted);
+            font-weight: 700;
+            background: var(--id-surface);
+            border: 2px dashed var(--id-border);
+            border-radius: 8px;
         }
 
         .copy-box {
-            background: #151515;
-            border: 1px solid #333;
+            background: var(--id-surface);
+            border: 1px solid var(--id-border);
+            border-radius: 12px;
             padding: 40px;
             margin-bottom: 40px;
         }
@@ -127,134 +125,142 @@
             margin: 0;
         }
         .feature-list li {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 25px;
             display: flex;
             align-items: flex-start;
             gap: 15px;
-            color: var(--text-light);
-            line-height: 1.4;
-            font-weight: 700;
+            color: var(--id-text);
+            line-height: 1.5;
+            font-weight: 600;
         }
-        .feature-list strong { color: var(--kk-yellow); }
+        .feature-list strong { color: var(--id-blue); }
         .feature-list svg {
-            color: var(--kk-red);
+            color: var(--id-blue);
             flex-shrink: 0;
-            width: 30px; height: 30px;
+            width: 28px; height: 28px;
         }
 
-        @keyframes shake {
-            0%, 100% {transform: translateX(0);}
-            10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
-            20%, 40%, 60%, 80% {transform: translateX(5px);}
+        @keyframes pulse-btn {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
+
         .btn {
             width: 100%;
-            padding: 25px;
-            font-size: 1.6rem;
-            font-weight: 900;
+            padding: 22px;
+            font-size: 1.4rem;
+            font-weight: 800;
             text-transform: uppercase;
-            color: var(--kk-black);
-            background: var(--kk-yellow);
+            color: #ffffff;
+            background: var(--id-orange);
             border: none;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 10px 0 var(--kk-yellow-dark), 0 15px 30px rgba(255, 222, 0, 0.3);
+            box-shadow: 0 6px 0 var(--id-orange-dark), 0 15px 25px rgba(249, 115, 22, 0.3);
             transition: all 0.1s ease;
-            position: relative;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            font-family: 'Montserrat', sans-serif;
+            animation: pulse-btn 2s infinite;
         }
         .btn:hover { 
-            background: #fff033; 
-            animation: shake 1s infinite;
+            background: #fb923c; 
         }
         .btn:active {
-            transform: translateY(10px);
-            box-shadow: 0 0px 0 var(--kk-yellow-dark);
+            transform: translateY(6px);
+            box-shadow: 0 0px 0 var(--id-orange-dark);
             animation: none;
         }
+        
         .btn-subtext {
             text-align: center;
             font-size: 0.9rem;
-            color: #888;
-            margin-top: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
+            color: var(--id-muted);
+            margin-top: 15px;
+            font-weight: 600;
         }
 
         .modal-overlay {
             display: none; position: fixed; inset: 0; z-index: 9999;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(5px);
             align-items: center; justify-content: center;
             opacity: 0; transition: opacity 0.2s;
         }
         .modal-overlay.active { display: flex; opacity: 1; }
         
         .modal-box {
-            background: #111;
-            width: 100%; max-width: 550px;
-            padding: 50px 40px;
+            background: #ffffff;
+            width: 100%; max-width: 500px;
+            padding: 40px;
             position: relative;
-            border: 5px solid var(--kk-yellow);
-            box-shadow: 0 0 50px rgba(255, 222, 0, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
         .close-icon {
-            position: absolute; top: 10px; right: 20px;
-            cursor: pointer; font-size: 35px; font-weight: 900; color: #555;
+            position: absolute; top: 15px; right: 20px;
+            cursor: pointer; font-size: 30px; font-weight: 700; color: var(--id-muted);
+            transition: color 0.2s;
         }
-        .close-icon:hover { color: var(--kk-red); }
+        .close-icon:hover { color: var(--id-text); }
         
         .modal-box h2 { 
-            font-size: 2.2rem; font-weight: 900; margin: 0 0 15px 0; 
-            text-align: center; text-transform: uppercase; color: #fff;
+            font-size: 1.8rem; font-weight: 800; margin: 0 0 15px 0; 
+            text-align: center; color: var(--id-text);
         }
         
         .bonus-alert {
-            background: rgba(255, 0, 51, 0.1);
-            border: 2px dashed var(--kk-red);
-            color: var(--kk-yellow);
+            background: #eff6ff;
+            border: 2px dashed var(--id-blue);
+            color: var(--id-blue-dark);
+            border-radius: 8px;
             padding: 15px;
             text-align: center;
-            font-weight: 900;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1rem;
             margin-bottom: 25px;
-            text-transform: uppercase;
         }
 
         .input-group input {
-            width: 100%; padding: 25px;
-            border: 3px solid #333;
-            background: #000;
-            color: var(--kk-yellow);
-            font-size: 1.4rem; font-weight: 900;
+            width: 100%; padding: 20px;
+            border: 2px solid var(--id-border);
+            border-radius: 8px;
+            background: #f8fafc;
+            color: var(--id-text);
+            font-size: 1.2rem; font-weight: 600;
             margin-bottom: 20px; box-sizing: border-box;
             text-align: center;
             font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.2s;
         }
-        .input-group input:focus { outline: none; border-color: var(--kk-yellow); }
-        .input-group input::placeholder { color: #555; }
+        .input-group input:focus { outline: none; border-color: var(--id-blue); background: #fff;}
+        .input-group input::placeholder { color: #94a3b8; font-weight: 500; }
 
         .modal-btn {
-            background: var(--kk-red);
+            background: var(--id-orange);
             color: #fff;
-            box-shadow: 0 8px 0 var(--kk-red-dark);
+            box-shadow: 0 6px 0 var(--id-orange-dark);
+            animation: none;
         }
         .modal-btn:hover {
-            background: #ff1a4b;
+            background: #fb923c;
         }
         .modal-btn:active {
-            box-shadow: 0 0px 0 var(--kk-red-dark);
+            box-shadow: 0 0px 0 var(--id-orange-dark);
+            transform: translateY(6px);
         }
 
-        .footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 50px; padding-bottom: 30px;}
+        .footer { text-align: center; font-size: 0.8rem; color: var(--id-muted); margin-top: 40px; padding-bottom: 30px;}
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.4rem; }
+            h1 { font-size: 2.2rem; }
             .wrapper { padding: 20px 15px; }
             .gif-placeholder { height: 250px; }
-            .btn { font-size: 1.3rem; padding: 20px; }
+            .btn { font-size: 1.2rem; padding: 20px; }
             .feature-list li { font-size: 1.1rem; }
-            .modal-box { padding: 40px 20px; border-width: 3px; }
+            .modal-box { padding: 30px 20px; margin: 15px; }
         }
     </style>
     
@@ -301,7 +307,7 @@
             </ul>
         </div>
 
-        <button class="btn cta" onclick="openModal()">YES! SHOW ME THE METHOD NOW &raquo;</button>
+        <button class="btn cta" onclick="openModal()">YES! SHOW ME INSTADOODLE NOW &raquo;</button>
         <div class="btn-subtext">&#128274; 100% Free & Secure Educational Access</div>
         
         <div class="footer">
@@ -325,7 +331,7 @@
                     <input type="email" id="emailInput" name="email" placeholder="ENTER YOUR BEST EMAIL..." required>
                 </div>
                 <button type="submit" id="submitBtn" class="btn modal-btn cta">
-                    SEND MY BONUSES & PLAY VIDEO &raquo;
+                    SEND BONUSES & UNLOCK INSTADOODLE &raquo;
                 </button>
             </form>
         </div>
