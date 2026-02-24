@@ -28,7 +28,6 @@
             min-height: 100vh;
         }
 
-        /* The Aggressive Warning Bar */
         .top-bar {
             background: var(--kk-red);
             color: #fff;
@@ -44,12 +43,11 @@
         }
 
         .wrapper {
-            max-width: 900px; /* Narrower for extreme focus */
+            max-width: 900px; 
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* Massive Typography */
         h1 {
             font-size: 3.8rem;
             font-weight: 900;
@@ -61,7 +59,6 @@
             text-shadow: 2px 2px 0px #000;
         }
         
-        /* The Signature Highlighter Effect */
         h1 span.highlight {
             background-color: var(--kk-yellow);
             color: var(--kk-black);
@@ -81,7 +78,6 @@
             font-weight: 700;
         }
 
-        /* The "Red Border" Video Container */
         .video-box {
             background: var(--kk-dark);
             border: 4px solid var(--kk-red);
@@ -118,7 +114,6 @@
             border: 1px dashed #333;
         }
 
-        /* Aggressive Copy Styling */
         .copy-box {
             background: #151515;
             border: 1px solid #333;
@@ -148,7 +143,6 @@
             width: 30px; height: 30px;
         }
 
-        /* The Sabri Suby Button */
         @keyframes shake {
             0%, 100% {transform: translateX(0);}
             10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
@@ -187,7 +181,6 @@
             text-transform: uppercase;
         }
 
-        /* Extreme Contrast Modal */
         .modal-overlay {
             display: none; position: fixed; inset: 0; z-index: 9999;
             background: rgba(0, 0, 0, 0.95);
@@ -241,7 +234,6 @@
         .input-group input:focus { outline: none; border-color: var(--kk-yellow); }
         .input-group input::placeholder { color: #555; }
 
-        /* Modal Button turns Red */
         .modal-btn {
             background: var(--kk-red);
             color: #fff;
@@ -328,11 +320,11 @@
                 &#9888; ACTION BONUS: INCLUDES THE PRIVATE "PATTERN INTERRUPT" B-ROLL VAULT!
             </div>
 
-            <form onsubmit="event.preventDefault(); window.location.href='https://instadoodle.com/cb-special?hop=unfavrino&hopId=3bab95d6-c2b7-4d6e-81cc-87dd7c2b2797';">
+            <form id="leadForm" onsubmit="submitToGoogleSheet(event)">
                 <div class="input-group">
-                    <input type="email" id="emailInput" placeholder="ENTER YOUR BEST EMAIL..." required>
+                    <input type="email" id="emailInput" name="email" placeholder="ENTER YOUR BEST EMAIL..." required>
                 </div>
-                <button type="submit" class="btn modal-btn cta">
+                <button type="submit" id="submitBtn" class="btn modal-btn cta">
                     SEND MY BONUSES & PLAY VIDEO &raquo;
                 </button>
             </form>
@@ -359,6 +351,37 @@
         modal.addEventListener('click', function(e) {
             if (e.target === modal) { closeModal(); }
         });
+
+        // GOOGLE SHEETS & CLICKBANK REDIRECT LOGIC
+        function submitToGoogleSheet(event) {
+            event.preventDefault(); 
+            
+            const form = document.getElementById('leadForm');
+            const btn = document.getElementById('submitBtn');
+            const emailValue = document.getElementById('emailInput').value;
+            
+            // --> IMPORTANT: PASTE YOUR GOOGLE SCRIPT URL HERE <--
+            const scriptURL = 'YOUR_GOOGLE_WEB_APP_URL_HERE'; 
+
+            // Visual feedback for the user
+            btn.innerHTML = 'LOADING SECURE ACCESS...';
+            btn.style.opacity = '0.7';
+
+            // Send email to your Google Sheet
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: new URLSearchParams({'email': emailValue}) 
+            })
+            .then(response => {
+                // INSTANT REDIRECT TO YOUR CLICKBANK AFFILIATE LINK
+                window.location.href = 'https://cbde1m11ffz8vh58te5ytb28xo.hop.clickbank.net';
+            })
+            .catch(error => {
+                // If there is an error, send them to the affiliate link anyway so you don't lose the sale
+                console.error('Error!', error.message);
+                window.location.href = 'https://cbde1m11ffz8vh58te5ytb28xo.hop.clickbank.net';
+            });
+        }
     </script>
 </body>
 </html>
