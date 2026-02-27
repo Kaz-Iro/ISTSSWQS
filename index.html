@@ -405,9 +405,11 @@
                 }
                 
                 // ==========================================
-                // 2. INSTANT REDIRECT TO CLICKBANK
+                // 2. DELAY REDIRECT FOR 500ms
                 // ==========================================
-                window.location.href = 'https://cbde1m11ffz8vh58te5ytb28xo.hop.clickbank.net';
+                setTimeout(function() {
+                    window.location.href = 'https://cbde1m11ffz8vh58te5ytb28xo.hop.clickbank.net';
+                }, 500);
             })
             .catch(error => {
                 // If there is an error, send them to the affiliate link anyway so you don't lose the sale
@@ -417,7 +419,11 @@
                 if (typeof fbq === 'function') {
                     fbq('track', 'Lead'); 
                 }
-                window.location.href = 'https://cbde1m11ffz8vh58te5ytb28xo.hop.clickbank.net';
+                
+                // Add the same 500ms delay for the error fallback
+                setTimeout(function() {
+                    window.location.href = 'https://cbde1m11ffz8vh58te5ytb28xo.hop.clickbank.net';
+                }, 500);
             });
         }
     </script>
